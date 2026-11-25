@@ -1,89 +1,109 @@
+import random
+
 # 9
 # Panka pandi S eurot 3% intressiga.
 #Määrata, kui suureks summa muutub N aasta järel.
 
-S = float(input("Sisesta algne summa (S): "))
-N = int(input("Sisesta aastate arv (N): "))
+print("ÜLESANNE 9: Pangaintressi arvutamine")
+S = float(input("Sisesta panka pandud algne rahasumma eurodes (S): "))
+N = int(input("Sisesta aastate arv, kauaks raha hoiusele jääb (N): "))
 
 summa = S
 for _ in range(N):
-    summa *= 1.03
-print("Summa", N, "aasta järel on:", round(summa, 2), "eurot")
+    summa *= 1.03
+print("Lahendus for-tsükliga: hoiuse kogusumma on", N, "aasta järel kasvanud", round(summa, 2), "euroni.")
 
 summa, i = S, 0
 while i < N:
-    summa *= 1.03
-    i += 1
-print("Summa", N, "aasta järel on:", round(summa, 2), "eurot")
+    summa *= 1.03
+    i += 1
+print("Lahendus while-tsükliga: hoiuse kogusumma on", N, "aasta järel kasvanud", round(summa, 2), "euroni.")
 
 summa, i = S, 0
 while True:
-    if i == N:
-        break
-    summa *= 1.03
-    i += 1
-print("Summa", N, "aasta järel on:", round(summa, 2), "eurot")
+    if i == N:
+        break
+    summa *= 1.03
+    i += 1
+print("Lahendus while True tsükliga: hoiuse kogusumma on", N, "aasta järel kasvanud", round(summa, 2), "euroni.")
+print()
 
 
 # 10
 # Klaviatuurilt sisestatakse 10 arvu paari.
 # Võrdle igas paaris olevaid arve ja väljasta neist suurem arv.
 
-for _ in range(10):
-    a = float(input("Sisesta paari esimene arv: "))
-    b = float(input("Sisesta paari teine arv: "))
-    print("Suurem arv on:", max(a, b))
+print("ÜLESANNE 10: Kümne arvupaari võrdlemine")
+print("Esimene lahendusviis (for-tsükkel):")
+for loendur in range(1, 11):
+    a = float(input(f"Sisesta {loendur}. paari esimene arv: "))
+    b = float(input(f"Sisesta {loendur}. paari teine arv: "))
+    print("Selles paaris on kahest sisestatud arvust suurem:", max(a, b))
 
+print("\nTeine lahendusviis (while-tsükkel):")
 i = 0
 while i < 10:
-    a = float(input("Sisesta paari esimene arv: "))
-    b = float(input("Sisesta paari teine arv: "))
-    print("Suurem arv on:", max(a, b))
-    i += 1
+    a = float(input(f"Sisesta {i + 1}. paari esimene arv: "))
+    b = float(input(f"Sisesta {i + 1}. paari teine arv: "))
+    print("Selles paaris on kahest sisestatud arvust suurem:", max(a, b))
+    i += 1
 
+print("\nKolmas lahendusviis (while True tsükkel):")
 i = 0
 while True:
-    if i == 10:
-        break
-    a = float(input("Sisesta paari esimene arv: "))
-    b = float(input("Sisesta paari teine arv: "))
-    print("Suurem arv on:", max(a, b))
-    i += 1
-    break
+    if i == 10:
+        break
+    a = float(input(f"Sisesta {i + 1}. paari esimene arv: "))
+    b = float(input(f"Sisesta {i + 1}. paari teine arv: "))
+    print("Selles paaris on kahest sisestatud arvust suurem:", max(a, b))
+    i += 1
+print()
+
 
 # 11
- #Leia kahekohaliste paaritute arvude korrutis, mis on jaguvad juhuslikult genereeritud arvuga.
+#Leia kahekohaliste paaritute arvude korrutis, mis on jaguvad juhuslikult genereeritud arvuga.
 
+print("ÜLESANNE 11: Kahekohaliste paaritute arvude korrutis")
 r = random.randint(1, 99)
-print("Juhuslikult genereeritud arv on:", r)
+print("Esimene lahendusviis (for-tsükkel). Arvuti genereeris juhusliku jagaja:", r)
 k, ok = 1, False
 for i in range(11, 100, 2):
-    if i % r == 0:
-        k *= i
-        ok = True
-print("Sobivate arvude korrutis on:", k if ok else 0)
+    if i % r == 0:
+        k *= i
+        ok = True
+if ok:
+    print("Kõigi arvuga", r, "jaguvate kahekohaliste paaritute arvude korrutis on:", k)
+else:
+    print("Ükski kahekohaline paaritu arv ei jagu arvuga", r, "seega on vastus: 0")
 
 r = random.randint(1, 99)
-print("Juhuslikult genereeritud arv on:", r)
+print("\nTeine lahendusviis (while-tsükkel). Arvuti genereeris juhusliku jagaja:", r)
 k, ok, i = 1, False, 11
 while i < 100:
-    if i % r == 0:
-        k *= i
-        ok = True
-    i += 2
-print("Sobivate arvude korrutis on:", k if ok else 0)
+    if i % r == 0:
+        k *= i
+        ok = True
+    i += 2
+if ok:
+    print("Kõigi arvuga", r, "jaguvate kahekohaliste paaritute arvude korrutis on:", k)
+else:
+    print("Ükski kahekohaline paaritu arv ei jagu arvuga", r, "seega on vastus: 0")
 
 r = random.randint(1, 99)
-print("Juhuslikult genereeritud arv on:", r)
+print("\nKolmas lahendusviis (while True tsükkel). Arvuti genereeris juhusliku jagaja:", r)
 k, ok, i = 1, False, 11
 while True:
-    if i >= 100:
-        break
-    if i % r == 0:
-        k *= i
-        ok = True
-    i += 2
-print("Sobivate arvude korrutis on:", k if ok else 0)
+    if i >= 100:
+        break
+    if i % r == 0:
+        k *= i
+        ok = True
+    i += 2
+if ok:
+    print("Kõigi arvuga", r, "jaguvate kahekohaliste paaritute arvude korrutis on:", k)
+else:
+    print("Ükski kahekohaline paaritu arv ei jagu arvuga", r, "seega on vastus: 0")
+print()
 
 
 # 12
@@ -91,29 +111,29 @@ print("Sobivate arvude korrutis on:", k if ok else 0)
 # Esimene niiduk töötas m tundi, iga järgmine 10 minutit rohkem kui eelmine.
 # Leia, kui mitu tundi töötas kogu brigaad kokku.
 
-
-N = int(input("Sisesta niidukite arv (N): "))
-m = float(input("Sisesta esimese niiduki töötunnid (m): "))
+print("ÜLESANNE 12: Heinaniitmise brigaadi kogutööaeg")
+N = int(input("Sisesta brigaadis töötavate niidukite koguarv (N): "))
+m = float(input("Sisesta esimese niiduki töötundide arv (m): "))
 
 kokku = 0
 praegune = m
 for _ in range(N):
-    kokku += praegune
-    praegune += 10 / 60
-print("Kogu brigaad töötas kokku:", round(kokku, 2), "tundi")
+    kokku += praegune
+    praegune += 10 / 60
+print("Lahendus for-tsükliga: kõik", N, "niidukit töötasid brigaadis kokku", round(kokku, 2), "tundi.")
 
 kokku, praegune, i = 0, m, 0
 while i < N:
-    kokku += praegune
-    praegune += 10 / 60
-    i += 1
-print("Kogu brigaad töötas kokku:", round(kokku, 2), "tundi")
+    kokku += praegune
+    praegune += 10 / 60
+    i += 1
+print("Lahendus while-tsükliga: kõik", N, "niidukit töötasid brigaadis kokku", round(kokku, 2), "tundi.")
 
 kokku, praegune, i = 0, m, 0
 while True:
-    if i == N:
-        break
-    kokku += praegune
-    praegune += 10 / 60
-    i += 1
-print("Kogu brigaad töötas kokku:", round(kokku, 2), "tundi")
+    if i == N:
+        break
+    kokku += praegune
+    praegune += 10 / 60
+    i += 1
+print("Lahendus while True tsükliga: kõik", N, "niidukit töötasid brigaadis kokku", round(kokku, 2), "tundi.")
